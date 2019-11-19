@@ -1,0 +1,43 @@
+---
+title: "Dates and Times"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(nycflights13)
+
+```
+
+Three types of date/time
+
+Date. Tibbles print this as <date>
+time .... print as <time>
+date-time uniquely identifies and instant in time, typically to the nearest second.
+
+Exercises 16.2.4
+1. The string will cause it to return an NA value.
+2. tzone deals with Time ZONEs hence tzone.It allows you to change the tz away from the system default.
+3. 
+```{r}
+d1 <- "January 1, 2010"
+mdy(d1)
+d2 <- "2015-Mar-07"
+ymd(d2)
+d3 <- "06-Jun-2017"
+dmy(d3)
+d4 <- c("August 19 (2015)", "July 1 (2015)")
+mdy(d4)
+d5 <- "12/30/14" # Dec 30, 2014
+mdy(d5)
+
+
+```
+
+```{r}
+flights %>%
+  filter(!is.na(dep_time), !is.na(arr_time))
+  mutate(departure_time = ymd_h(year, month, day, hour))
+```
+
